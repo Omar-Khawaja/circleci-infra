@@ -6,3 +6,9 @@ jobs:
     steps:
       - checkout
       - run: terraform plan
+
+workflows:
+  version: 2
+  validate_infra:
+    jobs:
+      - plan
