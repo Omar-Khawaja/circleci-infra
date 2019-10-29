@@ -9,8 +9,8 @@ jobs:
       - run: terraform plan -out=tfplan
       - persist_to_workspace:
           root: /tfplan_dir
-            paths:
-              - tfplan_dir/tfplan
+          paths:
+            - tfplan_dir/tfplan
   apply:
     docker:
      - image: hashicorp/terraform:light
