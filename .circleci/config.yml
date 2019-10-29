@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run: terraform init
-      - run: terraform apply -auto-approve
+      - run: terraform plan
 
 workflows:
   version: 2
