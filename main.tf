@@ -3,5 +3,5 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "test-bucket" {
-  bucket = "omar-circleci-test-bucket"
+  bucket = "omar-circleci-dev"
 }
