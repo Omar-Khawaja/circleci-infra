@@ -7,11 +7,14 @@ jobs:
       - checkout
       - run: terraform init
       - run: terraform plan
+      - persist_to_workspace:
+          root: project
   apply:
     docker:
      - image: hashicorp/terraform:light
     steps:
-      - checkout
+      - attach_workspace:
+          at: project
       - run: terraform apply -auto-approve
 
 workflows:
