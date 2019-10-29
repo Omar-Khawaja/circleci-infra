@@ -7,11 +7,11 @@ jobs:
       - checkout
       - run: mkdir -p /tmp/tfplan_dir
       - run: terraform init
+      - run: terraform plan -out=/tmp/tfplan_dir/tfplan
       - persist_to_workspace:
           root: /tmp/tfplan_dir
           paths:
             - tfplan
-      - run: terraform plan -out=/tmp/tfplan_dir/tfplan
   apply:
     docker:
      - image: hashicorp/terraform:light
