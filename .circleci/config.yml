@@ -5,15 +5,22 @@ jobs:
      - image: hashicorp/terraform:light
     steps:
       - checkout
+      - run: mkdir -p /tmp/tfplan_dir
       - run: terraform init
-      - run: terraform plan
+      - run: terraform plan -out=/tmp/tfplan_dir/tfplan
+      - persist_to_workspace:
+          root: /tmp/tfplan_dir
+          paths:
+            - tfplan
   apply:
     docker:
      - image: hashicorp/terraform:light
     steps:
       - checkout
+      - attach_workspace:
+          at: /tmp/tfplan_dir
       - run: terraform init
-      - run: terraform apply -auto-approve
+      - run: terraform apply -auto-approve "/tmp/tfplan_dir/tfplan"
 
 workflows:
   version: 2
