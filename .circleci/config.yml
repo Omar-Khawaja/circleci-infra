@@ -20,7 +20,7 @@ jobs:
       - attach_workspace:
           at: /tmp/tfplan_dir
       - run: terraform init
-      - run: terraform apply "/tmp/tfplan_dir/tfplan" -auto-approve
+      - run: terraform apply -auto-approve "/tmp/tfplan_dir/tfplan"
 
 workflows:
   version: 2
