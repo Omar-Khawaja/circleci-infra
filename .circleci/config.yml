@@ -8,13 +8,13 @@ jobs:
       - run: terraform init
       - run: terraform plan
       - persist_to_workspace:
-          root: my_workspace
+          root: /tmp
   apply:
     docker:
      - image: hashicorp/terraform:light
     steps:
       - attach_workspace:
-          at: my_workspace
+          at: /tmp
       - run: terraform apply -auto-approve
 
 workflows:
